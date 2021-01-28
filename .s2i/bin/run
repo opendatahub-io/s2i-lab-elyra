@@ -18,7 +18,8 @@ if [[ ! -f "$DEFAULT_RUNTIME_FILE" ]]; then
                                   --cos_endpoint=http://minio-service.kubeflow:9000 \
                                   --cos_username="$AWS_ACCESS_KEY_ID" \
                                   --cos_password="$AWS_SECRET_ACCESS_KEY" \
-                                  --cos_bucket="$COS_BUCKET"
+                                  --cos_bucket="$COS_BUCKET" \
+                                  --engine=Tekton
 fi
 
 exec /usr/libexec/s2i/run
