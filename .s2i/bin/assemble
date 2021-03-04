@@ -10,6 +10,8 @@ APP_ROOT=${APP_ROOT:-/opt/app-root/src}
 
 /usr/libexec/s2i/assemble
 
+jupyter labextension install @elyra/metadata-extension --no-build
+
 jupyter lab build
 
 fix-permissions /opt/app-root
