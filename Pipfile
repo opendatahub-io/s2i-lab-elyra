@@ -6,7 +6,11 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-elyra = "==2.0.1"
+elyra = "==2.2.1"
+jupyterlab-requirements = ">=0.6.3"
 
 [requires]
 python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true
