@@ -1,16 +1,12 @@
 #!/bin/bash
 
-set -x
-
-set -eo pipefail
+set -eox pipefail
 
 APP_ROOT=${APP_ROOT:-/opt/app-root/src}
 
 # Run the original Python S2I assemble script to install packages.
 
 /usr/libexec/s2i/assemble
-
-jupyter labextension install @elyra/metadata-extension --no-build
 
 jupyter lab build
 
