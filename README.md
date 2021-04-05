@@ -15,7 +15,7 @@ Elyra currently includes the following functionality:
 - [Run notebooks as batch jobs](https://elyra.readthedocs.io/en/latest/getting_started/overview.html#ability-to-run-a-notebook-as-a-batch-job)
 - [Reusable Code Snippets](https://elyra.readthedocs.io/en/latest/getting_started/overview.html#reusable-code-snippets)
 - [Hybrid runtime support](https://elyra.readthedocs.io/en/latest/getting_started/overview.html#hybrid-runtime-support) based on [Jupyter Enterprise Gateway](https://github.com/jupyter/enterprise_gateway)
-- [Python script editor with local/remote execution capabilities](https://elyra.readthedocs.io/en/latest/getting_started/overview.html#python-script-execution-support)
+- [Python and R script editors with local/remote execution capabilities](https://elyra.readthedocs.io/en/latest/getting_started/overview.html#python-and-r-scripts-execution-support)
 - [Python script navigation using auto-generated Table of Contents](https://elyra.readthedocs.io/en/latest/getting_started/overview.html#python-script-execution-support)
 - [Notebook navigation using auto-generated outlines using Table of Contents](https://elyra.readthedocs.io/en/latest/getting_started/overview.html#notebook-navigation-using-auto-generated-table-of-contents)
 - [Version control using Git integration](https://elyra.readthedocs.io/en/latest/getting_started/overview.html#version-control-using-git-integration)
@@ -26,5 +26,12 @@ The [Elyra Getting Started Guide](https://elyra.readthedocs.io/en/latest/getting
 includes more details on these features.
 
 - Image is preconfigured to work with the CRI-O container engine
-- A default runtime metadata instance is installed to work with the default Kubeflow Pipelines instance.
-- Added kfp-tekton compiler as the default compiler for Kubeflow Pipelines
+- If you want to use Elyra with a pipeline runtime such as Kubeflow Pipelines or Apache Airflow, you will need to first
+[add a new pipeline runtime configuration](https://elyra.readthedocs.io/en/latest/user_guide/runtime-conf.html#runtime-configuration).
+    - `Tekton` is the default compilation engine used by Open Data Hub when installing Kubeflow. Be sure to select the `Tekton` engine in the `Kubeflow Pipelines engine` dropdown menu when adding a new configuration for Kubeflow Pipelines.
+    - If Kubeflow Pipelines is installed using default configurations and in the same namespace as ODH, you may be able to use the following internal network routes for your Kubeflow pipelines configurations: 
+      ```bash
+        Kubeflow Pipelines API Endpoint: http://ml-pipeline-ui.kubeflow/pipeline
+        Cloud Object Storage Endpoint: http://minio-service.kubeflow:9000
+      ```
+    - If adding an Apache Airflow runtime, please note these [required parameters](https://elyra.readthedocs.io/en/latest/user_guide/runtime-conf.html#apache-airflow-configuration-settings) in the configuration
