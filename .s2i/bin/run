@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 replace_invalid_characters (){
   python -c 'import sys;print(sys.argv[1].translate ({ord(c): "-" for c in "!@#$%^&*()[]{};:,/<>?\|`~=_+"}))' "$1"
