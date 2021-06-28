@@ -5,9 +5,13 @@ set -eox pipefail
 APP_ROOT=${APP_ROOT:-/opt/app-root/src}
 
 # Run the original Python S2I assemble script to install packages.
-
 /opt/app-root/builder/assemble
 
 jupyter lab build
 
+# Make sure the S2I source directory is empty as we will use the image
+# produced to run further S2I builds
+(shopt -s dotglob ; rm -rf ${APP_ROOT}/src/*)
+
+# Fix up permissions.
 fix-permissions /opt/app-root
