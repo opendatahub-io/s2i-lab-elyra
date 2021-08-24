@@ -7,6 +7,7 @@ verify_ssl = true
 
 [packages]
 elyra = "==2.2.4"
+jupyterlab-requirements = ">=0.10.8"
 
 [requires]
 python_version = "3.8"
