@@ -11,12 +11,21 @@ DEFAULT_RUNTIME_FILE=$(jupyter --data-dir)/metadata/runtimes/my_kfp.json
 COS_BUCKET=$(replace_invalid_characters "$COS_BUCKET")
 export COS_BUCKET=${COS_BUCKET:-default}
 
+# If Kubeflow credentials are not supplied, use default Kubeflow installation credentials
+KF_USERNAME="${KF_USERNAME:=user@example.com}"
+KF_PASSWORD="${KF_PASSWORD:=12341234}"
+
 if [[ ! -f "$DEFAULT_RUNTIME_FILE" ]]; then
   elyra-metadata install runtimes --schema_name=kfp \
                                   --name=my_kfp \
                                   --display_name="Default Kubeflow Pipeline Runtime" \
+                                  --user_namespace="kubeflow-user-example-com" \
+                                  --auth_type="DEX_STATIC_PASSWORDS" \
                                   --api_endpoint=http://ml-pipeline-ui.kubeflow/pipeline \
+                                  --api_username="$KF_USERNAME" \
+                                  --api_password="$KF_PASSWORD" \
                                   --cos_endpoint=http://minio-service.kubeflow:9000 \
+                                  --cos_auth_type="USER_CREDENTIALS" \
                                   --cos_username="$AWS_ACCESS_KEY_ID" \
                                   --cos_password="$AWS_SECRET_ACCESS_KEY" \
                                   --cos_bucket="$COS_BUCKET" \
