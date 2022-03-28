@@ -3,6 +3,7 @@ check:
 build:
   base-image: "quay.io/thoth-station/s2i-minimal-py38-notebook:v0.2.2"
   build-stratergy: "Source"
+  custom-tag: "latest"
   registry: "quay.io"
   registry-org: "thoth-station"
   registry-project: "s2i-lab-elyra"
