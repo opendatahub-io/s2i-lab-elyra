@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-"elyra[all]" = "==3.9.1"
+"elyra[all]" = "==3.10.1"
 
 [requires]
 python_version = "3.8"
