@@ -1,7 +1,7 @@
 check:
   - thoth-build
 build:
-  base-image: "quay.io/thoth-station/s2i-minimal-py38-notebook:v0.3.0"
+  base-image: "quay.io/thoth-station/s2i-minimal-py38-notebook:v0.5.0"
   build-stratergy: "Source"
   custom-tag: "latest"
   registry: "quay.io"
