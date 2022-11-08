@@ -14,22 +14,23 @@ export COS_BUCKET=${COS_BUCKET:-default}
 # If Kubeflow credentials are not supplied, use default Kubeflow installation credentials
 KF_USERNAME="${KF_USERNAME:=user@example.com}"
 KF_PASSWORD="${KF_PASSWORD:=12341234}"
+KF_DEPLOYMENT_NAMESPACE=$(env | grep JUPYTER_IMAGE | cut -d'/' -f2)
+AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:minio}"
+AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:minio123}"
 
 if [[ ! -f "$DEFAULT_RUNTIME_FILE" ]]; then
   elyra-metadata install runtimes --schema_name=kfp \
                                   --name=my_kfp \
-                                  --display_name="Default Kubeflow Pipeline Runtime" \
-                                  --user_namespace="kubeflow-user-example-com" \
-                                  --auth_type="DEX_STATIC_PASSWORDS" \
-                                  --api_endpoint=http://ml-pipeline-ui.kubeflow/pipeline \
+                                  --display_name=Default \
+                                  --user_namespace="$KF_DEPLOYMENT_NAMESPACE" \
+                                  --auth_type=DEX_STATIC_PASSWORDS \
+                                  --api_endpoint=http://ml-pipeline."$KF_DEPLOYMENT_NAMESPACE"/pipeline \
                                   --api_username="$KF_USERNAME" \
                                   --api_password="$KF_PASSWORD" \
-                                  --cos_endpoint=http://minio-service.kubeflow:9000 \
-                                  --cos_auth_type="USER_CREDENTIALS" \
+                                  --cos_endpoint=http://minio-service."$KF_DEPLOYMENT_NAMESPACE":9000 \
+                                  --cos_auth_type=USER_CREDENTIALS \
                                   --cos_username="$AWS_ACCESS_KEY_ID" \
                                   --cos_password="$AWS_SECRET_ACCESS_KEY" \
                                   --cos_bucket="$COS_BUCKET" \
                                   --engine=Tekton
 fi
-
-exec /usr/libexec/s2i/run
