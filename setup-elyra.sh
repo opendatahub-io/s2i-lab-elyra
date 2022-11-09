@@ -15,8 +15,8 @@ export COS_BUCKET=${COS_BUCKET:-default}
 KF_USERNAME="${KF_USERNAME:=user@example.com}"
 KF_PASSWORD="${KF_PASSWORD:=12341234}"
 KF_DEPLOYMENT_NAMESPACE=$(env | grep JUPYTER_IMAGE | cut -d'/' -f2)
-AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:minio}"
-AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:minio123}"
+AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:=minio}"
+AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:=minio123}"
 
 if [[ ! -f "$DEFAULT_RUNTIME_FILE" ]]; then
   elyra-metadata install runtimes --schema_name=kfp \
