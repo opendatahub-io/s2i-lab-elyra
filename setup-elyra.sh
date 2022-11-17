@@ -14,7 +14,7 @@ export COS_BUCKET=${COS_BUCKET:-default}
 # If Kubeflow credentials are not supplied, use default Kubeflow installation credentials
 KF_USERNAME="${KF_USERNAME:=user@example.com}"
 KF_PASSWORD="${KF_PASSWORD:=12341234}"
-KF_DEPLOYMENT_NAMESPACE=$(env | grep ^JUPYTER_IMAGE= -m1 | cut -d'/' -f2)
+KF_DEPLOYMENT_NAMESPACE=$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace)
 AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:=minio}"
 AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:=minio123}"
 
