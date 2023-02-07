@@ -1,0 +1,4 @@
+-i https://pypi.org/simple
+elyra==3.14.2
+kubernetes
+openshift
