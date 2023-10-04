@@ -1,3 +1,8 @@
+**Archived:** This repository is in _read-only_ mode.   
+The Elyra installation is included in ODH workbench images directly.  
+Please refer to the ODH base notebook images, to utilize elyra.  
+Further contact: https://github.com/opendatahub-io/notebooks  
+
 # s2i-lab-elyra
 
 This image contains Elyra and all the dependencies and configurations needed to run as a 
